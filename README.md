@@ -1,4 +1,4 @@
-# Autonomous Multi-Agent Red-Teaming Baseline
+# Autonomous Multi-Agent Red-Teaming
 
 An autonomous multi-agent security evaluation framework designed to stress-test Large Language Model (LLM) guardrails. This baseline executes an iterative actor-critic feedback loop to discover vulnerabilities in conversational AI systems.
 
