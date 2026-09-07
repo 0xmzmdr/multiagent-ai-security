@@ -5,30 +5,46 @@ An autonomous multi-agent security evaluation framework designed to stress-test 
 ## Architecture Overview
 
 ```text
-                      +-----------------------------------+
-                      |         Adversary Agent           |
-                      |   (Generates & Mutates Attacks)   |
-                      +-----------------+-----------------+
-                                        |
-                          Payload a_t   |
-                                        v
-                      +-----------------+-----------------+
-                      |           Target Agent            |
-                      |   (Database Assistant w/ Rules)   |
-                      +-----------------+-----------------+
-                                        |
-                        Response r_t    |
-                                        v
-                      +-----------------+-----------------+
-                      |           Judge Agent             |
-                      |   (Compliance & Leak Analysis)    |
-                      +-----------------+-----------------+
-                                        |
-                      Feedback & Verdict| (Loop back if blocked)
-                                        v
-                      +-----------------+-----------------+
-                      |    Adversary Trajectory Memory    |
-                      +-----------------------------------+
++-------------------------------------------------------+
+      |                                                       |
+      |             ADVERSARY AGENT (Attacker)                |
+      |    * Reads Trajectory Memory & Policy Objectives      |
+      |    * Synthesizes new attack payload (gpt-4o-mini)     |
+      |                                                       |
+      +-------+---------------------------------------^-------+
+              |                                       |
+              | Payload a_t                           |
+              |                                       |
+              v                                       |
+      +-------+-----------------------+               |
+      |                               |               |
+      |     TARGET AGENT (System)     |               |
+      | * Applies Guardrail Filters   |               | [Loopback]
+      | * Generates Output or Refusal |               | Ingests Feedback
+      |                               |               | (t = t + 1)
+      +-------+-----------------------+               |
+              |                                       |
+              | Response r_t                          |
+              |                                       |
+              v                                       |
+      +-------+-----------------------+               |
+      |                               |               |
+      |     JUDGE AGENT (Evaluator)   |               |
+      | * Inspects for Data Leak      |               |
+      | * Emits BLOCKED/COMPROMISED   |               |
+      | * Formulates Attack Critique  |               |
+      |                               |               |
+      +-------+---------------+-------+               |
+              |               |                       |
+        [COMPROMISED]     [BLOCKED]                   |
+              |               |                       |
+              v               v                       |
+     +--------+----+  +-------+-----------------------+-------+
+     |             |  |                                       |
+     |  END TEST   |  |      ADVERSARY TRAJECTORY MEMORY      |
+     |  (Breach!)  |  |  * Logs a_t, r_t, and Critique        |
+     |             |  |  * Stores state transition sequence   |
+     +-------------+  +---------------------------------------+
 ```
 
 The system operates using three distinct interacting agents:
