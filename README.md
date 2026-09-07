@@ -35,16 +35,16 @@ An autonomous multi-agent security evaluation framework designed to stress-test 
 
 The system operates using three distinct interacting agents:
 
-* **Adversary Agent:** Generates prompt injection attacks ($a_t$), maintains a trajectory memory of prior refusals, and mutates payloads each turn to bypass defenses.
-* **Target Agent:** A simulated database assistant holding protected credentials (`SEC_TOKEN_ALPHA_992`) behind strict safety filters. Returns a response ($r_t$) based on the payload.
-* **Judge Agent:** Evaluates interactions each round, issues a compliance verdict (`BLOCKED` or `COMPROMISED`), and feeds directional critique back to the adversary.
+**Adversary Agent:** Generates prompt injection attacks ($a_t$), maintains a trajectory memory of prior refusals, and mutates payloads each turn to bypass defenses.
+**Target Agent:** A simulated database assistant holding protected credentials (`SEC_TOKEN_ALPHA_992`) behind strict safety filters. Returns a response ($r_t$) based on the payload.
+**Judge Agent:** Evaluates interactions each round, issues a compliance verdict (`BLOCKED` or `COMPROMISED`), and feeds directional critique back to the adversary.
 
 ## Reproducibility and Execution Modes
 
 To ensure seamless execution across diverse environments, this project implements a dual-mode execution engine:
 
-* **Live LLM Mode:** When an `OPENAI_API_KEY` is present, the Adversary Agent dynamically generates novel prompt injections using `gpt-4o-mini`.
-* **Deterministic Fallback Mode:** If no API key is detected, the system automatically falls back to an internal deterministic state machine. This guarantees 100% reproducibility and allows the system to run out-of-the-box without requiring external API credits or network access.
+**Live LLM Mode:** When an `OPENAI_API_KEY` is present, the Adversary Agent dynamically generates novel prompt injections using `gpt-4o-mini`.
+**Deterministic Fallback Mode:** If no API key is detected, the system automatically falls back to an internal deterministic state machine. This guarantees 100% reproducibility and allows the system to run out-of-the-box without requiring external API credits or network access.
 
 ## Prerequisites
 
