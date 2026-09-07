@@ -56,7 +56,7 @@ To ensure seamless execution across diverse environments, this project implement
 
 2. **Set up a virtual environment:**
    ```bash
-   python -m venv venv
+   python3 -m venv venv
    
    # macOS/Linux:
    source venv/bin/activate  
@@ -86,7 +86,7 @@ set OPENAI_API_KEY=sk-your-key-here
 
 Execute the baseline script from the root directory:
 ```bash
-python run_baseline.py
+python3 run_baseline.py
 ```
 
 **Inputs and Outputs:**
