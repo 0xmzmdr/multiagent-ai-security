@@ -50,7 +50,7 @@ To ensure seamless execution across diverse environments, this project implement
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/0xmzmdr/multiagent-ai-security.git](https://github.com/0xmzmdr/multiagent-ai-security.git)
+   git clone https://github.com/0xmzmdr/multiagent-ai-security.git
    cd multiagent-ai-security
    ```
 
