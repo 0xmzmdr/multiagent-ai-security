@@ -5,7 +5,7 @@ An autonomous multi-agent security evaluation framework designed to stress-test 
 ## Architecture Overview
 
 ```text
-+-------------------------------------------------------+
+      +-------------------------------------------------------+
       |                                                       |
       |             ADVERSARY AGENT (Attacker)                |
       |    * Reads Trajectory Memory & Policy Objectives      |
